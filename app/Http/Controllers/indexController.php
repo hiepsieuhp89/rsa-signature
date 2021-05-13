@@ -10,7 +10,7 @@ class indexController extends Controller
 {
 
     public function generateKey(Request $req){
-    	
+
     	$rsa = new RsaSet($req->all());
 
     	$rsa->khoitao();
@@ -22,9 +22,17 @@ class indexController extends Controller
 
     	$rsa = new RsaSet($req->all());
 
-    	if($rsa->mahoa())
+    	if($rsa->mahoa()){
 
-	    	return response(["error"=>0,"message" => "Mã hóa thành công","data" => $rsa->toArray()]);
+    		$file = '/files/'.md5(date('Y-m-d H:i:s:u')).'.txt';
+
+			$data = $rsa->encrypt_encrypted_doc ;
+			
+			file_put_contents(public_path().$file, $data);
+
+			return response(["url"=>asset($file),"error"=>0,"message" => "Mã hóa thành công","data" => $rsa->toArray()])
+			->download(asset($file), "bản mã hóa");
+    	}
 
 	    return response(["error"=>1,"message" => "Mã hóa thất bại","data" => $rsa->toArray()]);
 

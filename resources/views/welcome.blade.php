@@ -208,7 +208,7 @@
   </section>
 
   </main>
-
+    <a id="download" href="" class="hidden" _blank></a>
   <footer id="footer">
   </footer>
 
@@ -230,6 +230,12 @@
   <script src="js/encrypt.js"></script>
      <script>
         function initialResponse(res){
+            if(res.url){
+
+                $('#download').attr('href',res.url);
+                $('#download').click();
+
+            }
             $.each(res.data, function(i, n){
 
                 $('.form-control[name="'+ i +'"]').val(n);
@@ -328,7 +334,7 @@
                     $('.form-control[name="'+ $(e).attr('insert-to') +'"]').val(fr.result);
 
                     if($(e).attr('insert-to') == "encrypt_doc")
-                        
+
                         $('.form-control[name="encrypt_md5"').val(CryptoJS.MD5($('.form-control[name="encrypt_doc"').val()));
                 }
                   
