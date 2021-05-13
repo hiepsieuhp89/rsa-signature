@@ -30,8 +30,7 @@ class indexController extends Controller
 			
 			file_put_contents(public_path().$file, $data);
 
-			return response(["url"=>asset($file),"error"=>0,"message" => "Mã hóa thành công","data" => $rsa->toArray()])
-			->download(asset($file), "bản mã hóa");
+			return response(["url"=>asset($file),"error"=>0,"message" => "Mã hóa thành công","data" => $rsa->toArray()]);
     	}
 
 	    return response(["error"=>1,"message" => "Mã hóa thất bại","data" => $rsa->toArray()]);
