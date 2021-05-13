@@ -132,7 +132,7 @@
                                             <div class="row">
                                                 <div class="mb-2 w-100">
                                                   <label for="encrypt_file" class="form-label float-start">Chọn file chứa bản rõ hoặc nhập bản rõ bên dưới</label>
-                                                  <input class="form-control" type="file" id="encrypt_file" name="encrypt_file">
+                                                  <input class="form-control" type="file" accept=".txt" id="encrypt_file" name="encrypt_file" insert-to="encrypt_doc">
                                                 </div>
                                                 <div class="mb-2 w-100">
                                                   <label for="encrypt_doc" class="form-label float-start">Bản rõ</label>
@@ -154,7 +154,7 @@
                                             <div class="row">
                                                 <div class="mb-2" w-100>
                                                   <label for="decrypt_file" class="form-label float-start">Chọn file chứa bản mã hoặc nhập bản mã bên dưới</label>
-                                                  <input class="form-control" type="file" id="decrypt_file" name="decrypt_file">
+                                                  <input class="form-control" type="file" accept=".txt" id="decrypt_file" name="decrypt_file" insert-to="decrypt_encrypted_doc">
                                                 </div>
                                                 <div class="mb-2 w-100">
                                                   <label for="decrypt_encrypted_doc" class="form-label float-start">Bản mã hóa</label>
@@ -249,13 +249,14 @@
             toastr.options.progressBar = true;
             toastr.options.preventDuplicates = true;
 
-            $('.key-update').on('keyup change',function(){
+            $('.key-update').bind('keyup change input',function(){
                 var n_value = $('.form-control#p').val() * $('.form-control#q').val();
                 var phi_eule_value = ($('.form-control#p').val()-1) * ($('.form-control#q').val()-1);
 
                 $('.form-control#eule').val(phi_eule_value);
                 $('.form-control#n').val(n_value);
             })
+            
             $('[action="auto-generate-key"]').on('click',function(){
                 var d = new FormData(document.getElementById('key_generate_form'));
                 $.ajax({
@@ -302,7 +303,7 @@
                 });
             })
 
-            $('.form-control[name="encrypt_doc"').on('keyup change',function(){
+            $('.form-control[name="encrypt_doc"').bind('keyup change input',function(){
 
                 $('.form-control[name="encrypt_file"').val('');
 
@@ -310,20 +311,32 @@
 
                 $('.form-control[name="encrypt_md5"').val(md5);
 
-                var d = new FormData(document.getElementById('key_generate_form'));
-
             })
-            $('.form-control[name="encrypt_file"').on('change',function(){
+
+            $('.form-control[name="encrypt_file"').bind('change input',function(){
 
                 $('.form-control[name="encrypt_doc"').val("");
 
             })
-            $.ajaxSetup({
-                headers:{
-                    'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+
+            $('[type="file"]').on('change', function() {
+                var e = this;
+                var fr = new FileReader();
+
+                fr.onload = function(){
+
+                    $('.form-control[name="'+ $(e).attr('insert-to') +'"]').val(fr.result);
+
                 }
-            });
-        })
+                  
+                fr.readAsText(this.files[0]);
+            })
+                $.ajaxSetup({
+                    headers:{
+                        'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+                    }
+                });
+            })
      </script> 
 
   <!-- Template Main JS File -->
