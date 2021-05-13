@@ -170,7 +170,7 @@
                                                 </div>
                                                 
                                             </div>
-                                            <a action="check" href="#about" class="btn custom-btn bordered mt-3 text-white">Kiểm tra chữ ký</a>
+                                            <a action="check" class="btn custom-btn bordered mt-3 text-white">Kiểm tra chữ ký</a>
                                         </div>
                                     </div>
                               </div>
@@ -256,7 +256,7 @@
                 $('.form-control#eule').val(phi_eule_value);
                 $('.form-control#n').val(n_value);
             })
-            
+
             $('[action="auto-generate-key"]').on('click',function(){
                 var d = new FormData(document.getElementById('key_generate_form'));
                 $.ajax({
