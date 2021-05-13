@@ -131,41 +131,41 @@
                                             <h6 class="mb-2 mt-3 aos-init aos-animate" data-aos="fade" data-aos-delay="300">Mã hóa</h6>
                                             <div class="row">
                                                 <div class="mb-2 w-100">
-                                                  <label for="encrypt_file" class="form-label float-start">Chọn file chứa bản rõ hoặc nhập bản rõ bên dưới</label>
+                                                  <label for="encrypt_file" class="form-label float-start">Chọn file chứa Văn bản cần ký hoặc nhập Văn bản cần ký bên dưới</label>
                                                   <input class="form-control" type="file" accept=".txt" id="encrypt_file" name="encrypt_file" insert-to="encrypt_doc">
                                                 </div>
                                                 <div class="mb-2 w-100">
-                                                  <label for="encrypt_doc" class="form-label float-start">Bản rõ</label>
+                                                  <label for="encrypt_doc" class="form-label float-start">Văn bản cần ký</label>
                                                   <textarea class="form-control" id="encrypt_doc" rows="1" name="encrypt_doc"></textarea>
                                                 </div>
                                                 <div class="mb-2 w-100">
-                                                  <label for="encrypt_md5" class="form-label float-start">Hash một chiều md5</label>
+                                                  <label for="encrypt_md5" class="form-label float-start">Băm md5</label>
                                                   <textarea class="form-control" id="encrypt_md5" rows="1" name="encrypt_md5"></textarea>
                                                 </div>
                                                 <div class="mb-2 w-100">
-                                                  <label for="encrypt_encrypted_doc" class="form-label float-start">Bản mã hóa</label>
+                                                  <label for="encrypt_encrypted_doc" class="form-label float-start">Chữ ký</label>
                                                   <textarea class="form-control" id="encrypt_encrypted_doc" rows="1" name="encrypt_encrypted_doc"></textarea>
                                                 </div>
                                             </div>
-                                            <a action="encrypt" style="color:var(--primary-color);" class="btn custom-btn bordered mt-3 text-white">Mã hóa và tải tệp mã hóa</a>
+                                            <a action="encrypt" style="color:var(--primary-color);" class="btn custom-btn bordered mt-3 text-white">Lưu chữ ký</a>
                                         </div>
                                         <div class="col-md-6 h-100 pb-3" style=" padding: 0 30px;">
                                             <h6 class="mb-2 mt-3 aos-init aos-animate" data-aos="fade" data-aos-delay="300">Giải mã</h6>
                                             <div class="row">
                                                 <div class="mb-2" w-100>
-                                                  <label for="decrypt_file" class="form-label float-start">Chọn file chứa bản mã hoặc nhập bản mã bên dưới</label>
+                                                  <label for="decrypt_file" class="form-label float-start">Chọn file chứa chữ ký hoặc nhập chữ ký bên dưới</label>
                                                   <input class="form-control" type="file" accept=".txt" id="decrypt_file" name="decrypt_file" insert-to="decrypt_encrypted_doc">
                                                 </div>
                                                 <div class="mb-2 w-100">
-                                                  <label for="decrypt_encrypted_doc" class="form-label float-start">Bản mã hóa</label>
+                                                  <label for="decrypt_encrypted_doc" class="form-label float-start">Chữ ký</label>
                                                   <textarea class="form-control" id="decrypt_encrypted_doc" rows="1" name="decrypt_encrypted_doc"></textarea>
                                                 </div>
                                                 <div class="mb-2 w-100">
-                                                  <label for="decrypt_doc" class="form-label float-start">Bản rõ</label>
+                                                  <label for="decrypt_doc" class="form-label float-start">Văn bản xác nhận</label>
                                                   <textarea class="form-control" id="decrypt_doc" rows="1" name="decrypt_doc"></textarea>
                                                 </div>
                                                 <div class="mb-2 w-100">
-                                                  <label for="decrypt_decrypted_doc" class="form-label float-start">Bản giải mã</label>
+                                                  <label for="decrypt_decrypted_doc" class="form-label float-start">Giải mã chữ ký</label>
                                                   <textarea class="form-control" id="decrypt_decrypted_doc" rows="1" name="decrypt_decrypted_doc"></textarea>
                                                 </div>
                                                 

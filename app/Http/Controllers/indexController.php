@@ -45,7 +45,8 @@ class indexController extends Controller
 
     		return response(["error"=>0,"message"=>"Chữ ký hợp lệ","data" => $rsa->toArray()]);
 
-    	return response(["error"=>1,"message" => "Chữ ký không đúng","data" => $rsa->toArray()]);
+    	return response(["error"=>1,"message" => "Văn bản đã được chỉnh sửa hoặc chữ ký không chính
+xác","data" => $rsa->toArray()]);
     }
 
     public function index(Request $req){
