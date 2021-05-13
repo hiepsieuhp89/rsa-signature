@@ -208,7 +208,7 @@
   </section>
 
   </main>
-    <a id="download" href="" class="hidden" _blank></a>
+    <a id="download" href="" target="_blank"></a>
   <footer id="footer">
   </footer>
 
@@ -233,7 +233,8 @@
             if(res.url){
 
                 $('#download').attr('href',res.url);
-                $('#download').click();
+
+                document.getElementById('download').click();
 
             }
             $.each(res.data, function(i, n){
