@@ -243,7 +243,7 @@ class RsaSet extends Model
                 
                     $this->decrypt_decrypted_doc = $str;
 
-                    if($this->decrypt_decrypted_doc == $this->decrypt_doc)
+                    if($this->decrypt_decrypted_doc == md5($this->decrypt_doc))
 
                         return true;
                     else
