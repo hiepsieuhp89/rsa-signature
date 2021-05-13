@@ -327,6 +327,9 @@
 
                     $('.form-control[name="'+ $(e).attr('insert-to') +'"]').val(fr.result);
 
+                    if($(e).attr('insert-to') == "encrypt_doc")
+                        
+                        $('.form-control[name="encrypt_md5"').val(CryptoJS.MD5($('.form-control[name="encrypt_doc"').val()));
                 }
                   
                 fr.readAsText(this.files[0]);
