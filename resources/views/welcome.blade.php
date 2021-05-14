@@ -161,7 +161,7 @@
                                                   <textarea class="form-control" id="decrypt_encrypted_doc" rows="1" name="decrypt_encrypted_doc"></textarea>
                                                 </div>
                                                 <div class="mb-2 w-100">
-                                                  <label for="decrypt_doc" class="form-label float-start">Văn bản xác nhận</label>
+                                                  <label for="decrypt_doc" class="form-label float-start">Văn bản cần xác nhận</label>
                                                   <textarea class="form-control" id="decrypt_doc" rows="1" name="decrypt_doc"></textarea>
                                                 </div>
                                                 <div class="mb-2 w-100">
