@@ -161,11 +161,11 @@ class RsaSet extends Model
 
     public function khoitao(){
 
-        if($this->p > 0 && $this->q > 0)
+        if($this->p >= 3 && $this->q >= 3)
 
             if($this->p == $this->q || !$this->kiemtrasonguyento($this->p) || !$this->kiemtrasonguyento($this->q))
-
-             return false;
+  
+                return false;
 
     	while($this->p == $this->q || !$this->kiemtrasonguyento($this->p) || !$this->kiemtrasonguyento($this->q)){
 
