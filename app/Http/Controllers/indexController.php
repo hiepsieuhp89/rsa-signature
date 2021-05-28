@@ -13,9 +13,11 @@ class indexController extends Controller
 
     	$rsa = new RsaSet($req->all());
 
-    	$rsa->khoitao();
+    	if($rsa->khoitao())
 
-    	return response(["error"=>0,"message" => "Tạo khóa thành công","data" => $rsa->toArray()]);
+    	   return response(["error"=>0,"message" => "Tạo khóa thành công","data" => $rsa->toArray()]);
+        else
+            return response(["error"=>1,"message" => "Tạo khóa không thành công","data" => $rsa->toArray()]);
     }
 
     public function encrypt(Request $req){

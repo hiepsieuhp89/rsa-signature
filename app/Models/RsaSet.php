@@ -16,33 +16,48 @@ class RsaSet extends Model
 
         //key set
 
-    	$this->p = (double)$input['p'] ? (double)$input['p'] : null;
+    	$this->p = isset($input['p']) ? (double)$input['p'] : null;
 
-    	$this->q = (double)$input['q'] ? (double)$input['q'] : null;
+    	$this->q = isset($input['q']) ? (double)$input['q'] : null;
 
     	$this->eule = ($this->p != null && $this->q != null) ? ($this->p-1 ) * ($this->q - 1) : null;
 
     	$this->n = ($this->eule != null) ? ($this->p *$this->q) : null;
 
-    	$this->e = (double)$input['e'] ? (double)$input['e'] : null;
+    	$this->e = isset($input['e']) ? (double)$input['e'] : null;
 
     	$this->pub_key = null;
 
-        $this->d = (double)$input['d'] ? (double)$input['d'] : null;
+        $this->d = isset($input['d']) ? (double)$input['d'] : null;
+
+        // $this->p = (double)$input['p'];
+
+        // $this->q = (double)$input['q'];
+
+        // $this->eule = ($this->p-1 ) * ($this->q - 1);
+
+        // $this->n = ($this->p * $this->q);
+
+        // $this->e = (double)$input['e'];
+
+        // $this->pub_key = null;
+
+        // $this->d = (double)$input['d'];
+
 
         //encrypt and send
 
-        $this->encrypt_md5 = $input['encrypt_md5']; // ban ro gui di
+        $this->encrypt_md5 = isset($input['encrypt_md5']) ? $input['encrypt_md5'] : null;// ban ro gui di
 
-        $this->encrypt_encrypted_doc = $input['encrypt_encrypted_doc']; // ban ma hoa gui di
+        $this->encrypt_encrypted_doc = isset($input['encrypt_encrypted_doc']) ? $input['encrypt_encrypted_doc'] : null;// ban ma hoa gui di
 
         // check
 
-        $this->decrypt_encrypted_doc = $input['decrypt_encrypted_doc']; // ban ma hoa nhan duoc
+        $this->decrypt_encrypted_doc = isset($input['decrypt_encrypted_doc']) ? $input['decrypt_encrypted_doc'] : null;// ban ma hoa nhan duoc
 
-        $this->decrypt_doc = $input['decrypt_doc']; // ban ro nhan duoc
+        $this->decrypt_doc = isset($input['decrypt_doc']) ? $input['decrypt_doc'] : null;// ban ro nhan duoc
 
-        $this->decrypt_decrypted_doc= $input['decrypt_decrypted_doc']; // ban giai ma duoc tu ban ma hoa nhan duoc
+        $this->decrypt_decrypted_doc= isset($input['decrypt_decrypted_doc']) ? $input['decrypt_decrypted_doc'] : null;// ban giai ma duoc tu ban ma hoa nhan duoc
 
     }
     public function kiemtrasonguyento($so){
@@ -146,15 +161,22 @@ class RsaSet extends Model
 
     public function khoitao(){
 
-    	do{
-            if(!$this->p)
-    		    $this->p = rand(7, 101);
-    		if(!$this->q)
-			    $this->q = rand(7, 101);
+        if($this->p > 0 && $this->q > 0)
 
-    	}while($this->p == $this->q || !$this->kiemtrasonguyento($this->p) || !$this->kiemtrasonguyento($this->q));
+            if($this->p == $this->q || !$this->kiemtrasonguyento($this->p) || !$this->kiemtrasonguyento($this->q))
+
+             return false;
+
+    	while($this->p == $this->q || !$this->kiemtrasonguyento($this->p) || !$this->kiemtrasonguyento($this->q)){
+
+            $this->p = rand(7, 101);
+
+            $this->q = rand(7, 101);
+        };
 
     	$this->taokhoa();
+
+        return true;
     }
 
     public function mahoa()
