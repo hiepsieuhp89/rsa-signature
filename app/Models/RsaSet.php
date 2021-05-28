@@ -120,7 +120,7 @@ class RsaSet extends Model
             //Tính Phi(n)=(p-1)*(q-1)
             $this->eule = ($this->p - 1) * ($this->q - 1);
 
-            //Tính e là một số ngẫu nhiên có giá trị 0< e <phi(n) và là số nguyên tố cùng nhau với Phi(n)
+            //Tính e là một số ngẫu nhiên có giá trị 0 < e <phi(n) và là số nguyên tố cùng nhau với Phi(n)
             do{
 
                 $this->e = rand(2, $this->eule);

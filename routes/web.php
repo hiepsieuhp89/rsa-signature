@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\indexController::class,'index'])->name('index');
 
+Route::get('/key/generate', [App\Http\Controllers\indexController::class,'generateKey']);
 Route::post('/key/generate', [App\Http\Controllers\indexController::class,'generateKey'])->name('client.key.generate');
 
 Route::post('/encrypt', [App\Http\Controllers\indexController::class,'encrypt'])->name('client.rsa.encrypt');
