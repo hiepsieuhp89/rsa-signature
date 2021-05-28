@@ -16,13 +16,19 @@ class RsaSet extends Model
 
         //key set
 
-    	$this->p = (double)$input['p'];
-    	$this->q = (double)$input['q'];
-    	$this->eule = ($this->p-1 ) * ($this->q - 1);
-    	$this->n = (double)$input['n'];
-    	$this->e = (double)$input['e'];
+    	$this->p = (double)$input['p'] ? (double)$input['p'] : null;
+
+    	$this->q = (double)$input['q'] ? (double)$input['q'] : null;
+
+    	$this->eule = ($this->p != null && $this->q != null) ? ($this->p-1 ) * ($this->q - 1) : null;
+
+    	$this->n = ($this->eule != null) ? ($this->p *$this->q) : null;
+
+    	$this->e = (double)$input['e'] ? (double)$input['e'] : null;
+
     	$this->pub_key = null;
-        $this->d = (double)$input['d'];
+
+        $this->d = (double)$input['d'] ? (double)$input['d'] : null;
 
         //encrypt and send
 
@@ -141,10 +147,10 @@ class RsaSet extends Model
     public function khoitao(){
 
     	do{
-
-    		$this->p = rand(7, 101);
-    		
-			$this->q = rand(7, 101);
+            if(!$this->p)
+    		    $this->p = rand(7, 101);
+    		if(!$this->q)
+			    $this->q = rand(7, 101);
 
     	}while($this->p == $this->q || !$this->kiemtrasonguyento($this->p) || !$this->kiemtrasonguyento($this->q));
 
