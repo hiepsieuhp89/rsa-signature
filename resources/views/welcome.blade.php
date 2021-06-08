@@ -24,7 +24,7 @@
   <link href="vendor\venobox\venobox.css" rel="stylesheet">
   <link href="vendor\owl.carousel\assets\owl.carousel.min.css" rel="stylesheet">
   <link href="vendor\aos\aos.css" rel="stylesheet">
-  <link href="css\toastr.min.css" rel="stylesheet">
+  <link href="css\iziToast.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="css\style.css" rel="stylesheet">
@@ -76,7 +76,7 @@
       <form id="key_generate_form">  
         <div class="container" id="rsa">
                 <div class="section-title">
-          <h2>Mã hóa RSA</h2>
+          <h2>Chữ ký số RSA</h2>
             </div>
                     <div class="row mr-0 mt-0 ml-0" style="padding: 5px;">
                         <div title="Tạo khóa" class="col-lg-4 col-md-10 mx-auto col-12" style="background: black;">
@@ -128,14 +128,14 @@
                               <div class="hero-text mt-3 mb-3 text-center">
                                     <div class="row m-0">
                                         <div class="col-md-6 h-100 pb-3" style="background-color: white; padding: 0 30px;">
-                                            <h6 class="mb-2 mt-3 aos-init aos-animate" data-aos="fade" data-aos-delay="300">Mã hóa</h6>
+                                            <h6 class="mb-2 mt-3 aos-init aos-animate" data-aos="fade" data-aos-delay="300">Bên gửi</h6>
                                             <div class="row">
                                                 <div class="mb-2 w-100">
-                                                  <label for="encrypt_file" class="form-label float-start">Chọn file chứa Văn bản cần ký hoặc nhập Văn bản cần ký bên dưới</label>
-                                                  <input class="form-control" type="file" accept=".txt" id="encrypt_file" name="encrypt_file" insert-to="encrypt_doc">
+                                                  <label for="encrypt_file" class="form-label float-start">Chọn file tài liệu cần ký(txt, docx,...) hoặc nhập Văn bản cần ký bên dưới</label>
+                                                  <input class="form-control" type="file" id="encrypt_file" name="encrypt_file" insert-to="encrypt_doc">
                                                 </div>
                                                 <div class="mb-2 w-100">
-                                                  <label for="encrypt_doc" class="form-label float-start">Văn bản cần ký</label>
+                                                  <label for="encrypt_doc" class="form-label float-start">Văn bản cần ký(tùy chọn)</label>
                                                   <textarea class="form-control" id="encrypt_doc" rows="1" name="encrypt_doc"></textarea>
                                                 </div>
                                                 <div class="mb-2 w-100">
@@ -150,26 +150,24 @@
                                             <a action="encrypt" style="color:var(--primary-color);" class="btn custom-btn bordered mt-3 text-white">Lưu chữ ký</a>
                                         </div>
                                         <div class="col-md-6 h-100 pb-3" style=" padding: 0 30px;">
-                                            <h6 class="mb-2 mt-3 aos-init aos-animate" data-aos="fade" data-aos-delay="300">Giải mã</h6>
+                                            <h6 class="mb-2 mt-3 aos-init aos-animate" data-aos="fade" data-aos-delay="300">Bên xác nhận</h6>
                                             <div class="row">
                                                 <div class="mb-2" w-100>
-                                                  <label for="decrypt_file" class="form-label float-start">Chọn file chứa chữ ký hoặc nhập chữ ký bên dưới</label>
-                                                  <input class="form-control" type="file" accept=".txt" id="decrypt_file" name="decrypt_file" insert-to="decrypt_encrypted_doc">
+                                                  <label for="decrypt_file" class="form-label float-start">Chọn file tài liệu cần kiểm tra chữ ký(txt, docx,...) hoặc nhập Văn bản cần kiểm tra bên dưới </label>
+                                                  <input class="form-control" type="file" id="decrypt_file" name="decrypt_file">
                                                 </div>
                                                 <div class="mb-2 w-100">
-                                                  <label for="decrypt_encrypted_doc" class="form-label float-start">Chữ ký</label>
-                                                  <textarea class="form-control" id="decrypt_encrypted_doc" rows="1" name="decrypt_encrypted_doc"></textarea>
-                                                </div>
-                                                <div class="mb-2 w-100">
-                                                  <label for="decrypt_doc" class="form-label float-start">Văn bản cần xác nhận</label>
+                                                  <label for="decrypt_doc" class="form-label float-start">Văn bản cần xác nhận(Tùy chọn)</label>
                                                   <textarea class="form-control" id="decrypt_doc" rows="1" name="decrypt_doc"></textarea>
+                                                </div>
+                                                <div class="mb-2 w-100">
+                                                  <label for="decrypt_encrypted_doc" class="form-label float-start">Chữ ký nhận được</label>
+                                                  <textarea class="form-control" id="decrypt_encrypted_doc" rows="1" name="decrypt_encrypted_doc"></textarea>
                                                 </div>
                                                 <div class="mb-2 w-100">
                                                   <label for="decrypt_decrypted_doc" class="form-label float-start">Giải mã chữ ký</label>
                                                   <textarea class="form-control" id="decrypt_decrypted_doc" rows="1" name="decrypt_decrypted_doc"></textarea>
-                                                </div>
-                                                
-                                            </div>
+                                                </div>                                            </div>
                                             <a action="check" class="btn custom-btn bordered mt-3 text-white">Kiểm tra chữ ký</a>
                                         </div>
                                     </div>
@@ -188,12 +186,12 @@
         <div class="section-title">
           <h2>Hướng dẫn</h2>
           <p>- Nhập thông tin <b>khóa</b> hoặc bấm <b>Tạo khóa bất kỳ</b> để hệ thống tự động tạo khóa</p>
-          <p>- Nhập <b>văn bản cần kí</b> hoặc chọn <b>file</b> gồm văn bản cần kí, sau đó hệ thống sinh ra mã băm MD5</p>
-          <p>- Bấm <b>Mã hóa và tải tệp mã hóa</b> để mã hóa chữ kí và <b>tải về</b> tệp gồm bản giải mã (<b>tùy chọn</b>)</p><br>
+          <p>- Nhập <b>văn bản cần kí</b> hoặc chọn <b>tài liệu</b> cần kí, có thể là tài liệu word (docx) hoặc text document, sau đó hệ thống sinh ra mã băm MD5 của tài liệu</p>
+          <p>- Bấm <b>Lưu chữ ký và hệ thống đẩy ra trang chứa chữ ký đã tạo</b> để <b>tải về</b>
           <p>Kiểm tra chữ kí: <br>
-            &emsp; -Nhập <b>bản mã hóa cần kiểm tra</b> hoặc chọn <b>file</b> gồm bản mã hóa<br>
-            &emsp; -Nhập <b>bản rõ</b> cần kiểm tra<br>
-            &emsp; -Bấm <b>Kiểm tra chữ ký</b> để kiểm tra chữ ký cho văn bản<br>  
+            &emsp; -Nếu người dùng nhập tài liệu thì <b>chọn tài liệu cần kiểm tra</b>  <br>
+            &emsp; -Nếu người dùng nhập văn bản thì <b>chọn văn bản cần kiểm tra</b> <br>
+            &emsp; -Bấm <b>Kiểm tra chữ ký</b> để kiểm tra chữ ký cho tài liệu, nếu tài liệu đã bị thay đổi hoặc chữ ký không đúng, <b> hệ thống sẽ cảnh báo tài liệu không khớp chữ ký </b>
           </p>
         </div>
       </div>
@@ -226,7 +224,7 @@
   <script src="vendor\owl.carousel\owl.carousel.min.js"></script>
   <script src="vendor\typed.js\typed.min.js"></script>
   <script src="vendor\aos\aos.js"></script>
-  <script src="js/toastr.min.js"></script>
+  <script src="js/iziToast.min.js"></script>
   <script src="js/encrypt.js"></script>
      <script>
         function initialResponse(res){
@@ -246,15 +244,21 @@
             if(res.message)
                 
                 if(res.error)
-
-                    toastr.error(res.message);
+                    iziToast.warning({
+                                displayMode: 1,
+                                position: 'topRight',
+                                closeOnClick: true,
+                                message: res.message,
+                            });
                 else
-
-                    toastr.success(res.message);
+                    iziToast.success({
+                                displayMode: 1,
+                                position: 'topRight',
+                                closeOnClick: true,
+                                message: res.message,
+                            });
         }
         $(document).ready(function(){
-            toastr.options.progressBar = true;
-            toastr.options.preventDuplicates = true;
 
             $('.key-update').bind('keyup change input',function(){
                 var n_value = $('.form-control#p').val() * $('.form-control#q').val();
@@ -295,6 +299,16 @@
             })
 
             $('[action="encrypt"]').on('click',function(){
+
+                if($('.form-control[name="encrypt_doc"').val() == ""){
+                    $('.form-control[name="decrypt_file"').val("").show();
+                    $('.form-control[name="decrypt_doc"').val("").hide();
+                }
+                else{
+                    $('.form-control[name="decrypt_doc"').val("").show();
+                    $('.form-control[name="decrypt_file"').val("").hide();
+                }
+
                 var d = new FormData(document.getElementById('key_generate_form'));
 
                 $.ajax({
@@ -319,34 +333,68 @@
                 $('.form-control[name="encrypt_md5"').val(md5);
 
             })
+            $('.form-control[name="decrypt_doc"').bind('keyup change input',function(){
+
+                $('.form-control[name="decrypt_file"').val('');
+
+            })
 
             $('.form-control[name="encrypt_file"').bind('change input',function(){
 
                 $('.form-control[name="encrypt_doc"').val("");
 
             })
+            $('.form-control[name="decrypt_file"').bind('change input',function(){
+
+                $('.form-control[name="decrypt_doc"').val("");
+
+            })
 
             $('[type="file"]').on('change', function() {
-                var e = this;
-                var fr = new FileReader();
 
-                fr.onload = function(){
-
-                    $('.form-control[name="'+ $(e).attr('insert-to') +'"]').val(fr.result);
-
-                    if($(e).attr('insert-to') == "encrypt_doc")
-
-                        $('.form-control[name="encrypt_md5"').val(CryptoJS.MD5($('.form-control[name="encrypt_doc"').val()));
-                }
-                  
-                fr.readAsText(this.files[0]);
-            })
-                $.ajaxSetup({
-                    headers:{
-                        'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+              var d = new FormData(document.getElementById('key_generate_form'));
+                d.append('file',this.files[0]);
+                $.ajax({
+                    type : 'post',
+                    url : '{{ route('client.rsa.md5file') }}',
+                    data : d,
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success:function(res){
+                        initialResponse(res);
                     }
                 });
+
+              // var doc=new Docxtemplater().loadZip(zip)
+
+              // var text= doc.getFullText();
+
+              // var e = this;
+              // $('.form-control[name="'+ $(e).attr('insert-to') +'"]').val(text);
+              
+              // if($(e).attr('insert-to') == "encrypt_doc")
+              //     $('.form-control[name="encrypt_md5"').val(CryptoJS.MD5($('.form-control[name="encrypt_doc"').val()));
+
+              //var fr = new FileReader();
+
+                // fr.onload = function(){
+
+                //     $('.form-control[name="'+ $(e).attr('insert-to') +'"]').val(fr.result);
+
+                //     if($(e).attr('insert-to') == "encrypt_doc")
+
+                //         $('.form-control[name="encrypt_md5"').val(CryptoJS.MD5($('.form-control[name="encrypt_doc"').val()));
+                // }
+                  
+                // fr.readAsText(this.files[0]);
             })
+            $.ajaxSetup({
+                headers:{
+                        'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+                }
+            });
+        })
      </script> 
 
   <!-- Template Main JS File -->

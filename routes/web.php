@@ -22,3 +22,6 @@ Route::post('/encrypt', [App\Http\Controllers\indexController::class,'encrypt'])
 
 Route::post('/check', [App\Http\Controllers\indexController::class,'check'])->name('client.rsa.check');
 
+Route::post('/readdocx', [App\Http\Controllers\indexController::class,'readdocx'])->name('client.rsa.readdox');
+
+Route::post('/md5_file', [App\Http\Controllers\indexController::class,'md5file'])->name('client.rsa.md5file');

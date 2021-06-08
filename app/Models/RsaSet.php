@@ -15,6 +15,9 @@ class RsaSet extends Model
     function __construct($input){
 
         //key set
+        
+$this->file = isset($input['file']) ? $input['file'] : null;
+        $this->docx = isset($input['docx']) ? $input['docx'] : null;
 
     	$this->p = isset($input['p']) ? (double)$input['p'] : null;
 
@@ -30,22 +33,9 @@ class RsaSet extends Model
 
         $this->d = isset($input['d']) ? (double)$input['d'] : null;
 
-        // $this->p = (double)$input['p'];
-
-        // $this->q = (double)$input['q'];
-
-        // $this->eule = ($this->p-1 ) * ($this->q - 1);
-
-        // $this->n = ($this->p * $this->q);
-
-        // $this->e = (double)$input['e'];
-
-        // $this->pub_key = null;
-
-        // $this->d = (double)$input['d'];
-
-
         //encrypt and send
+
+        $this->encrypt_doc = isset($input['encrypt_doc']) ? $input['encrypt_doc'] : null;// ban ro gui di
 
         $this->encrypt_md5 = isset($input['encrypt_md5']) ? $input['encrypt_md5'] : null;// ban ro gui di
 
@@ -57,9 +47,21 @@ class RsaSet extends Model
 
         $this->decrypt_doc = isset($input['decrypt_doc']) ? $input['decrypt_doc'] : null;// ban ro nhan duoc
 
+        $this->de_file = isset($input['decrypt_file']) ? $input['decrypt_file'] : null;
+
         $this->decrypt_decrypted_doc= isset($input['decrypt_decrypted_doc']) ? $input['decrypt_decrypted_doc'] : null;// ban giai ma duoc tu ban ma hoa nhan duoc
 
     }
+    public function md5file(){
+
+        $this->encrypt_md5 = md5_file($this->file);
+
+        return true;
+    }
+    public function readdocx($readdocx){
+        return true;
+    }
+
     public function kiemtrasonguyento($so){
 
     	$kiemtra = true;
@@ -124,7 +126,9 @@ class RsaSet extends Model
                 for ($i = $k - 1; $i >= 0; $i--){
 
                     $kq = ($kq * $kq) % $nx;
+
                     if ($a[$i] == 1){
+                        
                         $kq = ($kq * $mx) % $nx;
                     }
 
@@ -225,7 +229,9 @@ class RsaSet extends Model
 
                         $this->encrypt_encrypted_doc = base64_encode($data);
 
-                        $this->banMaHoaGuiDen = base64_encode($data);
+                        $this->banMaHoaGuiDen = $this->encrypt_encrypted_doc;
+
+                        $this->decrypt_encrypted_doc = $this->encrypt_encrypted_doc;
 
                     }
                 }
@@ -271,12 +277,19 @@ class RsaSet extends Model
                 
                     $this->decrypt_decrypted_doc = $str;
 
-                    if($this->decrypt_decrypted_doc == md5($this->decrypt_doc))
-
-                        return true;
-                    else
+                    if($this->decrypt_doc == ""){
+                        if($this->decrypt_decrypted_doc == md5_file($this->de_file))
+                            return true;
+                        else
+                            return false;
+                    }
+                    else{
+                        if($this->decrypt_decrypted_doc == md5($this->decrypt_doc))
+                            return true;
+                        else
+                            return false;
+                    }
                         
-                        return false;
                 }
             }catch(Exception $e){
 
