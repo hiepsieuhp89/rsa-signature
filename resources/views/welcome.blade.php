@@ -228,6 +228,7 @@
   <script src="js/encrypt.js"></script>
      <script>
         function initialResponse(res){
+            iziToast.destroy();
             if(res.url){
 
                 $('#download').attr('href',res.url);
@@ -270,6 +271,12 @@
 
             $('[action="auto-generate-key"]').on('click',function(){
                 var d = new FormData(document.getElementById('key_generate_form'));
+                iziToast.info({
+                                displayMode: 1,
+                                position: 'bottomRight',
+                                closeOnClick: true,
+                                message: 'Đang tạo khóa, vui lòng chờ',
+                            });
                 $.ajax({
                     type : 'post',
                     url : '{{ route('client.key.generate') }}',
@@ -285,6 +292,12 @@
 
             $('[action="check"]').on('click',function(){
                 var d = new FormData(document.getElementById('key_generate_form'));
+                iziToast.info({
+                                displayMode: 1,
+                                position: 'bottomRight',
+                                closeOnClick: true,
+                                message: 'Đang kiểm tra chữ ký, vui lòng chờ',
+                            });
                 $.ajax({
                     type : 'post',
                     url : '{{ route('client.rsa.check') }}',
@@ -310,7 +323,12 @@
                 }
 
                 var d = new FormData(document.getElementById('key_generate_form'));
-
+                iziToast.info({
+                                displayMode: 1,
+                                position: 'bottomRight',
+                                closeOnClick: true,
+                                message: 'Đang tạo chữ ký, vui lòng chờ',
+                            });
                 $.ajax({
                     type : 'post',
                     url : '{{ route('client.rsa.encrypt') }}',
@@ -353,6 +371,12 @@
             $('[type="file"]').on('change', function() {
 
               var d = new FormData(document.getElementById('key_generate_form'));
+              iziToast.info({
+                                displayMode: 1,
+                                position: 'bottomRight',
+                                closeOnClick: true,
+                                message: 'Đang tải tài liệu, vui lòng chờ',
+                            });
                 d.append('file',this.files[0]);
                 $.ajax({
                     type : 'post',
