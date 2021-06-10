@@ -272,8 +272,9 @@
             $('[action="auto-generate-key"]').on('click',function(){
                 var d = new FormData(document.getElementById('key_generate_form'));
                 iziToast.info({
+                                timeout:0,
                                 displayMode: 1,
-                                position: 'bottomRight',
+                                position: 'topRight',
                                 closeOnClick: true,
                                 message: 'Đang tạo khóa, vui lòng chờ',
                             });
@@ -293,8 +294,9 @@
             $('[action="check"]').on('click',function(){
                 var d = new FormData(document.getElementById('key_generate_form'));
                 iziToast.info({
+                                timeout:0,
                                 displayMode: 1,
-                                position: 'bottomRight',
+                                position: 'topRight',
                                 closeOnClick: true,
                                 message: 'Đang kiểm tra chữ ký, vui lòng chờ',
                             });
@@ -324,8 +326,9 @@
 
                 var d = new FormData(document.getElementById('key_generate_form'));
                 iziToast.info({
+                                timeout:0,
                                 displayMode: 1,
-                                position: 'bottomRight',
+                                position: 'topRight',
                                 closeOnClick: true,
                                 message: 'Đang tạo chữ ký, vui lòng chờ',
                             });
@@ -372,8 +375,9 @@
 
               var d = new FormData(document.getElementById('key_generate_form'));
               iziToast.info({
+                            timeout:0,
                                 displayMode: 1,
-                                position: 'bottomRight',
+                                position: 'topRight',
                                 closeOnClick: true,
                                 message: 'Đang tải tài liệu, vui lòng chờ',
                             });
